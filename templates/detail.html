@@ -116,9 +116,15 @@
     <hr />
 
     <div class="loginarea">
-        <input type="button" class="login" value="Login" />
-        <input type="button" style="width:85px;" class="login" value="Sign Up" />
+        {% if username != None %}
+        <input type="button" class="login" value="{{ username}}"/>
+        <a href="logout"><input type="button" class="login" value="Logout" /></a >
+        {% else %}
+        <a href="login"><input type="button" class="login" value="Login" /></a >
+        <a href="signup"><input type="button" style="width:85px;" class="login" value="Sign Up" /></a >
+        {% endif %}
     </div>
+
     <div>
         {% for food in foods%}
         <div id="pic">
@@ -137,10 +143,10 @@
                     <td>
                         <a href="like?foodname={{ food.name }}" style="text-decoration:none;" >
                             <input type="button"  class="login" value="Like" />
-                        </a>
+                        </a >
                         <a href="dislike?foodname={{ food.name }}" style="text-decoration:none;">
                             <input type="button"  class="login" value="Dislike" />
-                        </a>
+                        </a >
                     </td>
                 </tr>
             </table>
@@ -156,7 +162,7 @@
             </table>
         </div>
         <div id="basic_info" style="top:750px; height:200px; ">
-            <p id="steps">Ingredients:</p>
+            <p id="steps">Ingredients:</p >
             <table class="table" style="height:90%">
                 <tr>
                     <td>
@@ -166,14 +172,27 @@
             </table>
             {%endfor%}
         </div>
+        {% if cs != None %}
+            {% for c in cs %}
+        <div id="basic_info" style="top:750px; height:200px; ">
+            <p id="steps">user: {{ c.user }}</p>
+            <p id="steps_detail">
+            <textarea rows="10" cols="50" readonly="readonly">{{ c.context }}
+            </textarea>
+            </p>
+            {% endfor %}
+
+            </div>
+            {% endif %}
+
         <div id="basic_info" style="top:970px; height:500px;">
-            <p id="steps">Cooking Steps:</p>
+            <p id="steps">Comment:</p >
             <p id="steps_detail">
                 <form  method="post" enctype="multipart/form-data">
-            {{ comment.as_p }}
+            {{ comment.comment }}
             <input type="submit"  class="login" value="submit" />
 </form>
-            </p>
+            </p >
 
         </div>
 
@@ -182,40 +201,40 @@
         <table id="table_rec">
             <tr>
                 <tb>
-                    <p id="steps" style="margin-bottom:10px;">You might also like</p>
+                    <p id="steps" style="margin-bottom:10px;">You might also like</p >
                 </tb>
             </tr>
             <tr>
                 <tb>
-                    <img src="home.png" class="pic_rec"/>
-                </tb>
-            </tr>
-            <tr>
-                <tb></tb>
-                <tb>
-                    <p>The Magnificent Holiness of Tiramisu</p>
-                </tb>
-            </tr>
-            <tr>
-                <tb>
-                    <img src="home.png" class="pic_rec" />
+                    <a href="detail?foodname={{ one.name }}"><img src="{{ one.headImg }}" class="pic_rec"/></a>
                 </tb>
             </tr>
             <tr>
                 <tb></tb>
                 <tb>
-                    <p>The Magnificent Holiness of Tiramisu</p>
+                    <p>{{ one.name }}</p >
                 </tb>
             </tr>
             <tr>
                 <tb>
-                    <img src="home.png" class="pic_rec" />
+                    <a href="detail?foodname={{ two.name }}"><img src="{{ two.headImg }}" class="pic_rec" /></a>
                 </tb>
             </tr>
             <tr>
                 <tb></tb>
                 <tb>
-                    <p>The Magnificent Holiness of Tiramisu</p>
+                    <p>{{ two.name }}</p >
+                </tb>
+            </tr>
+            <tr>
+                <tb>
+                    <a href="detail?foodname={{ three.name }}"><img src="{{ three.headImg }}" class="pic_rec" /></a>
+                </tb>
+            </tr>
+            <tr>
+                <tb></tb>
+                <tb>
+                    <p>{{ three.name }}</p >
                 </tb>
             </tr>
 
