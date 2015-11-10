@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.db import IntegrityError
-from django.core import exceptions
-from django.http import HttpResponse,HttpResponseRedirect
+from django.http import HttpResponse
 from cs411.models import stu
 from cs411.models import food
+from cs411.models import comment
+from cs411.models import likelist
+import numpy as np
 from django.shortcuts import render_to_response
 import urllib.request
 from django import forms
-from cs411.models import comment
 # Create your views here.
 def signup(request):
     return render(request,'signup.html')
@@ -45,14 +46,49 @@ def login(request):
     else:
         return render(request,'Login Failure.html')
 
+
+def findremmendation(target_food):
+    foodlist = food.objects.all().exclude(name = target_food.name)
+    # print(foodlist.count())
+    data_matrix = np.zeros( (foodlist.count() ,2) ,dtype=np.int)
+
+    for i, fd in enumerate(foodlist):
+        distance = np.power( fd.spicy - target_food.spicy,2) + np.power( fd.sweet - target_food.sweet,2) +np.power( fd.salty - target_food.salty,2)
+        data_matrix[i][0] = distance
+        print(i)
+        data_matrix[i][1] = i
+    # data_matrix.sort(axis=0)
+    # print(data_matrix)
+    data_matrix = data_matrix[np.lexsort(np.fliplr(data_matrix).T)]
+    b = data_matrix[:3]
+    # print("it is")
+    return foodlist[int(b[0][1])],foodlist[int(b[1][1])],foodlist[int(b[2][1])]
+
 def detail(request):
     if request.session.get("username") is None:
         return render_to_response("login.html",{'info':True})
-    if request.method is not "POST":
+    if request.method == "POST":
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            comment_ = comment_form.cleaned_data['comment']
+            food_name_ = request.GET.get('foodname')
+            username = request.session.get('username')
+            comment__ = comment()
+            comment__.name = food_name_
+            comment__.context = comment_
+            comment__.user = username
+            comment__.save()
+            return HttpResponse("good")
+    else:
+        username = request.session.get('username')
         food_ = food.objects.filter(name = request.GET.get('foodname'))
-        return render_to_response('detail.html',{'foods': food_})
-
-
+        a,b,c = findremmendation(food_[0])
+        print("distance  a "+str(a))
+        print("distance  b "+str(b))
+        print("distance  c "+str(c))
+        comment_form_ = CommentForm()
+        comments = comment.objects.filter(name = request.GET.get('foodname'))
+        return render_to_response('detail.html', {'foods': food_, "comment":comment_form_, 'username': username, 'cs': comments,'one':a, 'two':b,'three':c})
 def logout(request):
     del request.session['username']
     return render(request, 'index.html')
@@ -68,8 +104,6 @@ def searchresult_name(request):
     temp = {'foods': food_, 'username': username}
     return render_to_response('searchresult.html', {'temp': temp})
 
-# def delete_by_name(request):
-#
 
 def deleteby_name(request):
     food_name = request.GET.get('foodname')
@@ -80,25 +114,11 @@ def deleteby_name(request):
 def add_page(request):
     return render(request,'create.html')
 
-# def add(request):
-#     item = request.GET.get('itemName')
-#     con = request.GET.get('country')
-#     cate = request.GET.get('category')
-#     ingr = request.GET.get('ingredients')
-#     path = request.GET.get('picturePath')
-#     try:
-#         food.objects.create(name = item, country = con, category = cate, ingredient = ingr, pic_path = path)
-#     except:
-#         return HttpResponse("failed!So soory")
-#     return render(request,'create2.html')
-    # food.objects.filter(name=item)
-    # food.objects.filter(country=con)
-    # food.objects.filter(category=cate)
-    # food.objects.filter(ingredient=ingr)
-    # food.objects.filter(pic_path=path).update()
+
 def update_render(request):
     retval = urllib.request.unquote(request.GET.get('foodname'))
     return render_to_response('update.html', {'foods':food.objects.filter(name = retval)})
+
 def update(request):
     select = request.GET.get('foodname')
     item = request.GET.get('itemName')
@@ -108,8 +128,6 @@ def update(request):
     path = request.GET.get('picturePath')
     food_list = food.objects.filter(name = select)
 
-    # for a in food_list:
-    #     return HttpResponse("size",a.name)
     if(item == ""):
         item = select
     if(con ==""):
@@ -123,19 +141,20 @@ def update(request):
     food_list.update(name = item, country = con, category =cate, ingredient=ingr, pic_path = path)
     return render_to_response('update2.html',{'foods':food.objects.filter(name =item)})
 
-class UserForm(forms.Form):
-    foodname = forms.CharField()
-    headImg = forms.FileField()
 
 class Foodform(forms.Form):
     foodname = forms.CharField()
     countryname = forms.CharField()
     categoryname = forms.CharField()
     ingredientname = forms.CharField()
-    spicy = forms.IntegerField();
-    sweet = forms.IntegerField();
-    salty = forms.IntegerField();
+    spicy = forms.IntegerField()
+    sweet = forms.IntegerField()
+    salty = forms.IntegerField()
     headImg = forms.FileField()
+
+class CommentForm(forms.Form):
+    comment = forms.CharField(widget=forms.Textarea(), )
+
 
 def picture_add(request):
     if request.method == "POST":
@@ -168,33 +187,19 @@ def picture_add(request):
         food_form = Foodform()
     return render_to_response('create.html',{'food_form':food_form})
 
-# def dislike(request):
-#     food_ = food.objects.filter(name = request.GET.get("foodname"))
-#     user_ = request.session.get("username")
-#     stu.objects.filter()
-
-class CommentForm(forms.Form):
-    comment = forms.CharField()
-    user = forms.CharField()
-    name = forms.CharField()
-
-def detail(request):
-    if request.session.get("username") is None:
-        return render_to_response("login.html",{'info':True})
-
-    if request.method == "POST":
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            comment_ = comment_form.cleaned_data['comment']
-            food_name_ = request.GET.get('foodname')
-            username = request.session.get('username')
-            comment__ = comment()
-            comment__.name = food_name_
-            comment__.context = comment_
-            comment__.user = username
-            comment__.save()
-            return HttpResponse("good")
+def like(request):
+    username = request.session.get("username")
+    user_ = stu.objects.filter(user = username)
+    if user_[0].num_like > 8:
+        return HttpResponse("your likelist is full")
+    elif likelist.objects.filter(user=username, name=request.GET.get('foodname')) != None:
+        return HttpResponse("you 've already liked this meal")
     else:
-        food_ = food.objects.filter(name = request.GET.get('foodname'))
-        comment_form_ =CommentForm()
-        return render_to_response('detail.html',{'foods': food_,"comment":comment_form_})
+        temp = user_[0].num_like+1
+        user_.update(num_like = temp)
+        # user_.update(num_like=temp)
+        likelist_ = likelist()
+        likelist_.name = request.GET.get('foodname')
+        likelist_.user = username
+        likelist_.save()
+        return HttpResponse("good")

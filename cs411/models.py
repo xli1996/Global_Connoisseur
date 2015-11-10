@@ -6,7 +6,7 @@ class stu(models.Model):
     spicy = models.IntegerField()
     sweet = models.IntegerField()
     salty = models.IntegerField()
-    # num_like = models.IntegerField()
+    num_like = models.IntegerField(default=0)
     def __str__(self):
         return self.user
 # Create your models here.
@@ -16,7 +16,7 @@ class food(models.Model):
     country = models.CharField(max_length=20)
     category = models.CharField(max_length=20)
     ingredient = models.CharField(max_length=20)
-    headImg = models.FileField(upload_to = './static/picture/')
+    headImg = models.FileField(upload_to = './static/picture/', default="")
     spicy = models.IntegerField()
     sweet = models.IntegerField()
     salty = models.IntegerField()
@@ -29,6 +29,14 @@ class comment(models.Model):
     context = models.CharField(max_length=255)
     class Meta:
         unique_together =('user','name')
+
+class likelist(models.Model):
+    user = models.CharField(max_length=20,primary_key=True)
+    name = models.CharField(max_length=40)
+
+
+
+
 
     # pic_path = models.CharField(max_length=100)
     def __str__(self):
