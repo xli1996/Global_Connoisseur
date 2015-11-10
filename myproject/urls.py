@@ -28,13 +28,12 @@ urlpatterns = [
     url(r'^test','cs411.views.searchresult_name'),
     url(r'^delete','cs411.views.deleteby_name'),
     url(r'^add','cs411.views.add_page'),
-    url(r'^_add','cs411.views.add'),
     url(r'^update','cs411.views.update_render'),
     url(r'^_update','cs411.views.update'),
     url(r'^pictureadd','cs411.views.picture_add'),
     url(r'^detail','cs411.views.detail'),
     url(r'^like','cs411.views.like'),
-    url(r'^dislike','cs411.views.dislike'),
+    #url(r'^dislike','cs411.views.dislike'),
 
 
 
