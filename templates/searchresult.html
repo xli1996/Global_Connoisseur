@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+{% load staticfiles %}
+<style>
+    body {
+        background-image: url( {% static "/picture/home.png"%});
+        background-color: #cccccc;
+        font-family: 'Helvetica';
+    }
+    myTitle {
+        position: absolute;
+        width: 100%;
+        font-family: "Helvetica";
+        Font-size: 30px;
+        top: 20px;
+        left: 8%;
+        color: #b1b1b1;
+    }
+
+    .table {
+        position: absolute;
+        top: 120px;
+        width: 70%;
+        font-family: "Helvetica";
+        Font-size: 20px;
+        left: 20%;
+        font-weight: 100;
+        column-gap: 0px;
+    }
+
+    .loginarea {
+        position: absolute;
+        left: 65%;
+        top: 10px;
+    }
+
+    .login {
+        width: 65px;
+        height: 40px;
+        border-radius: 20px;
+        color: #ffffff;
+        background-color: #FF4C65;
+        border: 0px solid #ffffff;
+        font-weight: bold;
+    }
+
+
+    .searchButton {
+        top: 20px;
+        position: absolute;
+        left: 52%;
+        width: 7%;
+        height: 40px;
+        border-radius: 20px;
+        color: #ffffff;
+        background-color: #FF4C65;
+        border: 0px solid #ffffff;
+        font-weight: bold;
+    }
+
+    .search {
+        top: 20px;
+        left: 30%;
+        position: absolute;
+        width: 20%;
+        height: 40px;
+        border-radius: 20px;
+        border: 1px solid #808080;
+        font-size: 15px;
+        color: #b1b1b1;
+    }
+</style>
+<body>
+    <mytitle>
+        Global Connoisseur
+    </mytitle>
+    <form action ="test" method="get">
+        <input class="search" type="text" name="food_name"value="" />
+        <input type="submit" class="searchButton" value="Search" />
+    </form>
+
+
+    <div class="loginarea">
+        {% if temp.username != None %}
+        <input type="button" class="login" value="{{ temp.username}}"/>
+        <a href="logout"><input type="button" class="login" value="Logout" /></a >
+        {% else %}
+        <a href="login"> <input type="button" class="login" value="Login" /></a >
+        <a href ="signup"><input type="button" style="width:85px;" class="login" value="Sign Up" /></a >
+        {% endif %}
+        <a href="pictureadd">
+        <input type="button" style="width:85px;" class="login" value="Add" /></a >
+
+    </div>
+    <br /><br /><br /><br />
+    <hr />
+
+    <table class="table">
+        {% for food in temp.foods %}
+        <tr>
+            <td>
+                <a href="detail?foodname={{ food.name }}"><img  src={{  food.headImg }} style="width:304px;height:228px;"></a>
+            </td>
+            <td>
+                <table style="width:60%;">
+
+                    <tr>
+                        <td>
+                            Title:{{   food.name }}
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>
+                            Category:{{ food.category }}
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td>
+                            Country:{{ food.country }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Ingredients:{{ food.ingredient }}
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                        <a href="delete?foodname={{ food.name }}">
+                            <input type="button" class="login" value="Delete" />
+                        </a >
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <a href="update?foodname={{ food.name }}">
+                                <input type="button" class="login" value="Update" />
+                            </a >
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                
+            </td>
+        </tr>
+        
+{%endfor%}
+
+
+
+
+    </table>
+
+
+    <!--{% load staticfiles %}-->
+
+    <!--<table class="table">
+        {% for food in foods %}
+        <tr>
+            <td>
+                Title
+            </td>
+
+            <td>
+                Picture
+            </td>
+        </tr>
+        <td>
+            {{ food.name }}
+        </td>
+
+        <td>
+
+            < img src="{% static food.pic_path %}" alt="Mountain View" style="width:304px;height:228px;">
+
+
+
+            <input type="button" style="width:85px;right:1%;top:100%;" class="xx" value="Delete" />
+
+        </td>
+        <tr></tr>
+        {%endfor%}
+    </table>-->
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+

@@ -1,0 +1,76 @@
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Helvetica;
+            background-image: url('static/home.png');
+        }
+
+        h1 {
+            position: absolute;
+            top: 28%;
+            font-size: 40px;
+            text-align: center;
+            width: 100%;
+        }
+
+        .table {
+            border-width: thin;
+            background-color: transparent;
+            text-align: center;
+            width: 350px;
+            position: absolute;
+            top: 40%;
+            left: 41%;
+            width: 18%;
+            border: 1px solid #808080;
+            background-color: transparent;
+        }
+
+        .login {
+            float: none;
+            width: 65px;
+            height: 40px;
+            border-radius: 20px;
+            color: #ffffff;
+            background-color: #FF4C65;
+            border: 0px solid #ffffff;
+            font-weight: bold;
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+
+        .input {
+            background-color: transparent;
+            border-style: solid;
+            border-width: 0px 0px 1px 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <a href = "login"><input type="button"  style="width:85px ; position:absolute; left:69%;" class="login" value="Login" /></a>
+    <h1>
+        Become a Connoisseur
+    </h1>
+    <form action ="data" class="table">
+        <tb>
+            <br />
+            Username:
+            <input type="text" class="input" name="Username">
+        </tb><br />
+        <tb>
+            Password:
+            <input type="text" class="input" name="Password">
+        </tb><br />
+        <tb>
+            Email:
+            <input type="text" class="input" name="Email">
+        </tb><br />
+        <tb>
+            <input type="submit" class="login" value="Submit" />
+        </tb>
+    </form>
+</body>
+</html>

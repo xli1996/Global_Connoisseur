@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<style>
+    myTitle {
+        position: absolute;
+        width: 100%;
+        font-family: "Helvetica";
+        Font-size: 30px;
+        top: 20px;
+        left: 14%;
+        color: #d1d1d1;
+    }
+
+    .loginarea{
+            position: absolute;
+            left: 65%;
+            top: 10px;
+    }
+    .table {
+        height:50%;
+        width:100%;
+        padding-left:10px;
+        font-family: "Helvetica";
+        Font-size: 25px;
+        font-weight: 100;
+        column-gap: 0px;
+        color:#808080;
+    }
+    .login {
+        width: 65px;
+        height: 40px;
+        border-radius: 20px;
+        color: #ffffff;
+        background-color: #FF4C65;
+        border: 0px solid #ffffff;
+        font-weight: bold;
+    }
+
+    .searchButton {
+        top: 20px;
+        position: absolute;
+        left: 52%;
+        width: 7%;
+        height: 40px;
+        border-radius: 20px;
+        color: #ffffff;
+        background-color: #FF4C65;
+        border: 0px solid #ffffff;
+        font-weight: bold;
+    }
+
+    .search {
+        top: 20px;
+        left: 30%;
+        position: absolute;
+        width: 20%;
+        height: 40px;
+        border-radius: 20px;
+        border: 1px solid #808080;
+    }
+
+    #basic_info{
+        position:relative;
+        top:630px;
+        left: 15%;
+        width:700px;
+        height: 100px;
+        border: 2px solid #808080;
+        border-radius: 20px;
+        box-sizing: border-box;
+    }
+    #pic{
+        position:absolute;
+        left:15%;
+        background: url(Homepage.jpg) no-repeat;
+        background-position: center center;
+        height:500px;
+        width:700px;
+        border-radius: 20px;
+    }
+    #steps{
+        font-size:25px;
+        color:#000000;
+        margin-top:10px;
+        margin-left:10px;
+        margin-bottom:-10px;
+    }
+    #steps_detail{
+        font-size:25px;
+        color:#808080;
+        margin-top:10px;
+        margin-left:10px;
+        margin-right:10px;
+        overflow-wrap:break-word;
+    }
+
+    #recommendation{
+        position:absolute;
+        top:150px;
+        left:15%;
+        margin-left:800px;
+        height:700px;
+    }
+    .pic_rec{ 
+        height:150px;
+        border-radius:20px;
+    }
+    .table_rec{
+    }
+</style>
+<body style="font-family: 'Helvetica';">
+    <mytitle>
+        Global Connoisseur
+    </mytitle>
+    <br /><br /><br /><br />
+    <hr />
+
+    <div class="loginarea">
+        <input type="button" class="login" value="Login" />
+        <input type="button" style="width:85px;" class="login" value="Sign Up" />
+    </div>
+    <div>
+        {% for food in foods%}
+        <div id="pic">
+        <img src = "{{ food.headImg }}" style="width:704px;height:528px;">
+        </div>
+        <div id="basic_info">
+            <table class="table">
+                <tr>
+                    <td>
+                        Title: {{food.name  }}
+                    </td>
+                </tr>
+            </table>
+                        <table class="table">
+                <tr>
+                    <td>
+                        <a href="like?foodname={{ food.name }}" style="text-decoration:none;" >
+                            <input type="button"  class="login" value="Like" />
+                        </a>
+                        <a href="dislike?foodname={{ food.name }}" style="text-decoration:none;">
+                            <input type="button"  class="login" value="Dislike" />
+                        </a>
+                    </td>
+                </tr>
+            </table>
+            <table class="table">
+                <tr>
+                    <td>
+                        Category: {{ food.category }}
+                    </td>
+                    <td>
+                        Country: {{ food.country }}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="basic_info" style="top:750px; height:200px; ">
+            <p id="steps">Ingredients:</p>
+            <table class="table" style="height:90%">
+                <tr>
+                    <td>
+                        {{ food.ingredient }}:
+                    </td>
+                </tr>
+            </table>
+            {%endfor%}
+        </div>
+        <div id="basic_info" style="top:970px; height:500px;">
+            <p id="steps">Cooking Steps:</p>
+            <p id="steps_detail">
+                <form  method="post" enctype="multipart/form-data">
+            {{ comment.as_p }}
+            <input type="submit"  class="login" value="submit" />
+</form>
+            </p>
+
+        </div>
+
+    </div>
+    <div id="recommendation">
+        <table id="table_rec">
+            <tr>
+                <tb>
+                    <p id="steps" style="margin-bottom:10px;">You might also like</p>
+                </tb>
+            </tr>
+            <tr>
+                <tb>
+                    <img src="home.png" class="pic_rec"/>
+                </tb>
+            </tr>
+            <tr>
+                <tb></tb>
+                <tb>
+                    <p>The Magnificent Holiness of Tiramisu</p>
+                </tb>
+            </tr>
+            <tr>
+                <tb>
+                    <img src="home.png" class="pic_rec" />
+                </tb>
+            </tr>
+            <tr>
+                <tb></tb>
+                <tb>
+                    <p>The Magnificent Holiness of Tiramisu</p>
+                </tb>
+            </tr>
+            <tr>
+                <tb>
+                    <img src="home.png" class="pic_rec" />
+                </tb>
+            </tr>
+            <tr>
+                <tb></tb>
+                <tb>
+                    <p>The Magnificent Holiness of Tiramisu</p>
+                </tb>
+            </tr>
+
+        </table>
+
+    </div>
+</body>
+</html>
