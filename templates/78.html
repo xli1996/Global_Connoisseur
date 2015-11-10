@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+	
+  <style>
+
+     body 
+     {
+         background-image: url('static/home.png');
+            font-family:Helvetica;
+
+    background-color: #cccccc;
+	}
+    
+    
+    #type {
+        text-align:center;
+        font-family:Tahoma;
+        color:white;
+        padding:5px;
+        top:40%;
+        position:absolute;
+        right:40%;
+        padding: 10px;
+
+
+
+  border: groove 1px #fff;
+  box-shadow: inset 1px 1px 2px 0 #707070;
+  transition: box-shadow 0.3s;
+-webkit-box-shadow: 10px -2px 62px 15px rgba(230,177,230,0.71);
+-moz-box-shadow: 10px -2px 62px 15px rgba(230,177,230,0.71);
+box-shadow: 10px -2px 62px 15px rgba(230,177,230,0.71);
+    outline: 1px solid pink;
+-webkit-animation: mymove 5s infinite; /* Chrome, Safari, Opera */
+    animation: mymove 5s infinite;
+
+}
+
+@-webkit-keyframes mymove {
+    50% {outline: 15px solid pink;}
+}
+
+@keyframes mymove {
+    50% {outline: 15px solid lightblue;}
+}
+.searchButton {
+ 			
+    -moz-box-shadow:inset 0px 39px 0px -24px #e67a73;
+	-webkit-box-shadow:inset 0px 39px 0px -24px #e67a73;
+	box-shadow:inset 0px 39px 0px -24px #e67a73;
+	background-color:#e4685d;
+	-moz-border-radius:9px;
+	-webkit-border-radius:20px;
+	border-radius:9px;
+	border:1px solid #ffffff;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Trebuchet MS;
+	font-size:16px;
+	padding:18px 18px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #b23e35;
+	position:absolute;
+    top: 1%;
+    right: 1%;
+   
+    
+}
+.searchButton:hover {
+	background-color:#eb675e;
+	position:absolute;
+    top: 1%;
+    right: 1%;
+
+}
+.searchButton:active {
+  	position:absolute;
+    top: 1%;
+    right: 1%;
+
+
+
+        
+}
+
+
+.final {
+	-moz-box-shadow:inset 0px 0px 17px 0px #efdcfb;
+	-webkit-box-shadow:inset 0px 0px 17px 0px #efdcfb;
+	box-shadow:inset 0px 0px 17px 0px #efdcfb;
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #dfbdfa), color-stop(1, #bc80ea));
+	background:-moz-linear-gradient(top, #dfbdfa 5%, #bc80ea 100%);
+	background:-webkit-linear-gradient(top, #dfbdfa 5%, #bc80ea 100%);
+	background:-o-linear-gradient(top, #dfbdfa 5%, #bc80ea 100%);
+	background:-ms-linear-gradient(top, #dfbdfa 5%, #bc80ea 100%);
+	background:linear-gradient(to bottom, #dfbdfa 5%, #bc80ea 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfbdfa', endColorstr='#bc80ea',GradientType=0);
+	background-color:#FF9999;
+	-moz-border-radius:29px;
+	-webkit-border-radius:29px;
+	border-radius:29px;
+	border:1px solid #c584f3;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Verdana;
+	font-size:15px;
+	font-weight:bold;
+	padding:10px 18px;
+	text-decoration:none;
+	text-shadow:0px 0px 17px #9752cc;
+	top:65%;
+	text-align: center;
+	right:50%;
+	position:absolute;
+}
+.final:hover {
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #bc80ea), color-stop(1, #dfbdfa));
+	background:-moz-linear-gradient(top, #bc80ea 5%, #dfbdfa 100%);
+	background:-webkit-linear-gradient(top, #bc80ea 5%, #dfbdfa 100%);
+	background:-o-linear-gradient(top, #bc80ea 5%, #dfbdfa 100%);
+	background:-ms-linear-gradient(top, #bc80ea 5%, #dfbdfa 100%);
+	background:linear-gradient(to bottom, #bc80ea 5%, #dfbdfa 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bc80ea', endColorstr='#dfbdfa',GradientType=0);
+	background-color:#FF9999;
+}
+.final:active {
+	top:65%;
+	text-align: center;
+	right:50%;
+	position:absolute;
+	background-color:#FF9999;
+}
+
+
+
+  </style>
+
+
+
+
+
+
+
+
+<title>Login in</title>
+</head>
+
+
+<body>
+
+<div id="type">
+<form action = "verify" >
+<b>
+User name:
+<input type="text" name="Username" style="float:center;background-color: transparent;
+border-style: solid; 
+border-width: 0px 0px 1px 0px; 
+border-color: darkred;">
+<br>
+<br>
+User password:
+<input type="password" name="Password" style="background-color: transparent;
+border-style: solid; 
+border-width: 0px 0px 1px 0px; 
+border-color: darkred;"> 
+<br>
+<br>
+<br>
+<input type="submit" class="final" value="Login" style="opacity:0.8;font-family:Coronetscript, cursive;font-size:18px;background-color:#FF9999;top:60%;right:40%;">
+<br>
+</form>
+</div>
+
+
+
+
+
+
+
+
+
+<h1 style="float:center;top:14%;right:32%;position:absolute;font-family:Book Antiqua;color:#33ADFF;font-size:60px;"><b> Welcome Back! </h1>
+<a href="signup" class="searchButton"  >Sign up</a>
+
+
+
+<audio controls="controls" autoplay>
+
+
+
+</audio>
+
+
+<p>     
+
+</p>
+</body>
+</html>
