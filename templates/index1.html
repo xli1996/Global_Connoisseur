@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        Global Connoisseur
+    </title>
+    <style type="text/css">
+        myTitle {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-family: "Helvetica";
+            Font-size: 40px;
+            top: 140px;
+            color: #fff;
+        }
+        .loginarea{
+            position: absolute;
+            left: 65%;
+            top: 10px;
+        }
+        .login {
+            width: 65px;
+            height: 40px;
+            border-radius: 20px;
+            color: #ffffff;
+            background-color: #FF4C65;
+            border: 0px solid #ffffff;
+            font-weight: bold;
+        }
+
+        .searchButton {
+            position: absolute;
+            left: 63%;
+            width: 7%;
+            top: 240px;
+            height: 40px;
+            border-radius: 20px;
+            color: #ffffff;
+            background-color: #FF4C65;
+            border: 0px solid #ffffff;
+            font-weight: bold;
+        }
+
+        .search {
+            position: absolute;
+            left: 32%;
+            width: 30%;
+            top: 240px;
+            height: 40px;
+            border-radius: 20px;
+            border: 1px solid #808080;
+        }
+
+        input[id*="MenuBar"] {
+            display: none;
+        }
+
+            input[id*="MenuBar"] + label {
+                box-shadow: -2px 2px 0 #ffffff;
+                margin-top: 80px;
+                display: block;
+                width: 40px;
+                height: 40px;
+                background-color: #FBE2B4;
+                cursor: pointer;
+                font-size: 50px;
+                left: 20%;
+                color: #fff;
+                position: fixed;
+            }
+
+                input[id*="MenuBar"] + label span:hover {
+                    color: #CCCCCC;
+                }
+
+                input[id*="MenuBar"] + label span {
+                    display: block;
+                    position: absolute;
+                    transition: .2s;
+                    top: -10px;
+                    left: 6px;
+                    font-weight: bolder;
+                }
+
+            input[id*="MenuBar"]:checked + label span {
+                transform: rotate(90deg);
+            }
+
+            input[id*="MenuBar"] ~ nav a {
+                font-family: "Verdana";
+                background-color: #FFC33C;
+                color: #FFFFFF;
+                position: fixed;
+                left: 20%;
+                margin-left: -105px;
+                transition: .6s margin;
+            }
+
+        nav a {
+            display: block;
+            height: 40px;
+            line-height: 40px;
+            width: 10%;
+            padding-left: 10px;
+            text-decoration: none;
+            color: #000000;
+            background-color: #00C8F8;
+        }
+
+        input[id*="MenuBar"]:checked ~ nav a {
+            margin-left: 0;
+        }
+
+            input[id*="MenuBar"]:checked ~ nav a:hover {
+                margin-left: 30px;
+                width: 13%;
+            }
+
+        input[id*="MenuBar"] ~ nav a:hover {
+            transition-delay: .1s;
+            margin-left: -5px;
+            width: 120px;
+            text-decoration: none;
+            color: #CCCCCC;
+        }
+
+        input[id*="MenuBar"] ~ nav a:nth-child(1) {
+            box-shadow: 5px 0 0 #ffffff;
+            transition-delay: .05s;
+            margin-top: 120px;
+        }
+
+        input[id*="MenuBar"] ~ nav a:nth-child(2) {
+            box-shadow: 5px 0 0 #ffffff;
+            transition-delay: .05s;
+            margin-top: 160px;
+        }
+
+        input[id*="MenuBar"] ~ nav a:nth-child(3) {
+            box-shadow: 5px 0 0 #ffffff;
+            transition-delay: .05s;
+            margin-top: 200px;
+        }
+
+        input[id*="MenuBar"] ~ nav a:nth-child(4) {
+            box-shadow: 5px 0 0 #ffffff;
+            transition-delay: .05s;
+            margin-top: 240px;
+        }
+
+        input[id*="MenuBar"] ~ nav a:nth-child(5) {
+            box-shadow: 5px 0 0 #ffffff;
+            transition-delay: .05s;
+            margin-top: 280px;
+        }
+
+        input[id*="MenuBar"] ~ nav a:nth-child(6) {
+            box-shadow: 5px 0 0 #ffffff;
+            transition-delay: .05s;
+            margin-top: 320px;
+        }
+    </style>
+</head>
+
+<body style="background-image: url('static/home.png');font-family: 'Helvetica';" >
+    
+    <mytitle>
+        Global Connoisseur
+
+    </mytitle>
+    <form action="test" method="get" >
+    <input type="submit" class="searchButton"  value ="search" />
+    <input class="search" type="text"name="food_name"  />
+    <input type="checkbox" id="MenuBar" checked= checked />
+
+    <label for="MenuBar"><span>=</span></label>
+    <br />
+    <nav>
+        <a>Beef</a >
+        <a>Pork</a >
+        <a>Fish</a >
+        <a>Noodles</a >
+        <a>Rice</a >
+    </nav>
+    <div class="loginarea">
+        {% if username != None %}
+        <input type="button" class="login" value="{{ username}}"/>
+        <a href="logout"><input type="button" class="login" value="Logout" /></a >
+        {% else %}
+        <a href="login"><input type="button" class="login" value="Login" /></a >
+        <a href="signup"><input type="button" style="width:85px;" class="login" value="Sign Up" /></a >
+    </div>
+        {% endif %}
+        </form>
+</body>
+</html>
