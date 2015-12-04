@@ -356,4 +356,5 @@ def ranking(request):
     return render(request,'rankkk.html',{'a':a, 'b':b,'c':c,'rest':rest})
 
 def contact(request):
-    return render(request,'contact.html')
+    username = request.session.get("username")
+    return render_to_response('contact.html', {'username': username})
