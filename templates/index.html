@@ -60,16 +60,9 @@
 </head>
 
 <body>
+<div class="brand">Global Connoisseur</div>
+    <div class="address-bar"></div>
 
-    <div class="brand">Global Connoisseur</div>
-    {% if username != None %}
-    <a href="profile"><input type="button" class="btn btn-default btn-lg" style="position:absolute;left: 80%;top: 10px;" value = {{ username}}></a>
-        <a href="logout" class="btn btn-default btn-lg" style="position:absolute;left: 88%;top: 10px;">Logout</a>
-    {% else %}
-    <a href="login" class="btn btn-default btn-lg" style="position:absolute;left: 80%;top: 10px;">login</a>
-
-    <a href="signup" class="btn btn-default btn-lg" style="position:absolute;left: 88%;top: 10px;">SignUp</a>
-    {% endif %}
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -82,9 +75,8 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.html">Connoisseur</a>
+                <a class="navbar-brand" href="index.html">Business Casual</a>
             </div>
-
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
@@ -102,15 +94,19 @@
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
-        </div>
         <!-- /.container -->
     </nav>
     <form action="test" method="get" >
-        <input type="submit" class="btn btn-default btn-lg" style="padding-top: 5px; padding-left: 0px;font:15px; position:absolute;left: 90%;top: 160px; width:80px; height:40px;" value="Search" /> <!-- search bar -->
-
-    <input class="search" type="text" style="position:absolute;left: 77%;top: 160px;" name="food_name" />
-
+    <input type="submit" class="btn btn-default btn-lg" style="padding-top: 5px; padding-left: 0px;font:15px; position:absolute;left: 90%;top: 180px; width:80px; height:40px;" value="Search" /> <!-- search bar -->
+    <input class="form-control" type="text" style="width:10%; position:absolute;left: 78%;top: 183px;" value="" name="food_name"/>
+    </form>
+    {% if username != None %}
+    <a href = "profile" class="btn btn-default btn-lg" style="position:absolute;left: 80%;top: 10px;">{{username}}</a>
+    <a href="logout" class="btn btn-default btn-lg" style="position:absolute;left: 88%;top: 10px;">Logout</a>
+    {% else %}
+    <a href="login.html" class="btn btn-default btn-lg" style="position:absolute;left: 80%;top: 10px;">login</a>
+    <a href="signup.html" class="btn btn-default btn-lg" style="position:absolute;left: 88%;top: 10px;">SignUp</a>
+    {% endif %}
 
 
 
