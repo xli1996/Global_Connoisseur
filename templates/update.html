@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#hide").click(function () {
+                $("#moreIngredients").hide();
+            });
+            $("#show").click(function () {
+                $("#moreIngredients").show();
+            });
+        });
+    </script>
+    <style>
+        /*#moreIgredients{
+            display:none;
+        }*/
+        myTitle {
+            position: absolute;
+            width: 100%;
+            font-family: "Helvetica";
+            Font-size: 30px;
+            top: 20px;
+            left: 8%;
+            color: #b1b1b1;
+        }
+
+        .table {
+            position: absolute;
+            top: 120px;
+            font-family: "Helvetica";
+            Font-size: 20px;
+            left: 8%;
+            font-weight: 100;
+            border-spacing: 10px 10px;
+        }
+
+        .iteminput {
+            border-radius: 20px;
+            border: 1px solid #808080;
+            font-size: 15px;
+            color: #b1b1b1;
+        }
+
+        .loginarea {
+            position: absolute;
+            left: 65%;
+            top: 10px;
+        }
+
+        .login {
+            width: 65px;
+            height: 40px;
+            border-radius: 20px;
+            color: #ffffff;
+            background-color: #FF4C65;
+            border: 0px solid #ffffff;
+            font-weight: bold;
+        }
+
+        .searchButton {
+            top: 20px;
+            position: absolute;
+            left: 52%;
+            width: 7%;
+            height: 40px;
+            border-radius: 20px;
+            color: #ffffff;
+            background-color: #FF4C65;
+            border: 0px solid #ffffff;
+            font-weight: bold;
+        }
+
+        .search {
+            top: 20px;
+            left: 30%;
+            position: absolute;
+            width: 20%;
+            height: 40px;
+            border-radius: 20px;
+            border: 1px solid #808080;
+            font-size: 15px;
+            color: #b1b1b1;
+        }
+
+        
+    </style>
+</head>
+<body style="background-color:#ffffff;font-family: 'Helvetica';">
+    <mytitle>
+        Global Connoisseur
+    </mytitle>
+
+    <form action = "test" methods="get">
+        <input class="search" type="text" name="food_name" value="" />
+    <input type="submit" class="searchButton" value="Search" />
+</form>
+
+    <div class="loginarea">
+        <a href="login">
+        <input type="button" class="login" value="Login" /></a>
+        <a href="signup">
+        <input type="button" style="width:85px;" class="login" value="Sign Up" />
+            </a>
+    </div>
+    <br /><br /><br /><br />
+    <hr />
+<form action="_update" method="get">
+    <table class="table">
+        <tr>
+            {%for food in foods %}
+            <td>
+                Selected Item:
+            </td>
+            <td style="color:#FF4C65">
+                 <input class="iteminput" type="text" readonly = "readonly" name ="foodname" value= "{{food.name }}"/>
+            </td>
+            {%endfor%}
+        </tr>
+        <tr>
+            <td>
+                Item Name:
+            </td>
+            <td>
+                <input class="iteminput" type="text"  name="itemName"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Country:
+            </td>
+            <td>
+                <input class="iteminput" type="text" name="country"/>
+        </tr>
+        <tr>
+            <td>
+                Category:
+            </td>
+            <td>
+                <input class="iteminput" type="text" name="category" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Ingredients:
+            </td>
+            <td>
+                <input class="iteminput" type="text"name ="ingredients"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Picture:
+            </td>
+            <td>
+                <input class="iteminput" type="text"name ="picturePath"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+
+            </td>
+            <td>
+                <input type="submit" class="login" value="Update" />
+            </td>
+
+        </tr>
+    </table>
+    </form>
+</body>
+</html>
