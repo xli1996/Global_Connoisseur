@@ -36,6 +36,7 @@ urlpatterns = [
     url(r'^dislike','cs411.views.dislike'),
     url(r'^profile','cs411.views.profile'),
     url(r'^rank','cs411.views.ranking'),
+    url(r'^contact','cs411.views.contact'),
 
 
 
