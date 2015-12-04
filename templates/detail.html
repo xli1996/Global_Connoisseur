@@ -75,7 +75,7 @@
     <form action="test" method="get" >
     <input type="submit" class="btn btn-default btn-lg" style="padding-top: 5px; padding-left: 0px;font:15px; position:absolute;left: 90%;top: 180px; width:80px; height:40px;" value="Search" /> <!-- search bar -->
     <input class="form-control" type="text" style="width:10%; position:absolute;left: 78%;top: 183px;" value="" name="food_name"/>
-
+    </form>
     <!--login-->
     {% if username != None %}
     <a href = "profile" class="btn btn-default btn-lg" style="position:absolute;left: 80%;top: 10px;">{{username}}</a>
@@ -181,9 +181,10 @@
                                         &nbsp;
                                     </td>
                                 </tr>
+                            <form method="post" enctype="multipart/form-data">
                                 <tr>
                                     <td>
-                                        <form method="post" enctype="multipart/form-data">
+
                                             {{ comment.comment }}
 
                                     </td>

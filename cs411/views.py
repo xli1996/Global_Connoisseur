@@ -64,6 +64,7 @@ def findremmendation(target_food):
     return foodlist[int(b[0][1])],foodlist[int(b[1][1])],foodlist[int(b[2][1])]
 
 def detail(request):
+
     if request.session.get("username") is None:
         return render_to_response("login.html",{'info':True})
     if request.method == "POST":
@@ -78,9 +79,9 @@ def detail(request):
             comment__.user = username
             try:
                 comment__.save()
+
             except:
                 return render(request,'exception.html')
-            # return HttpResponse("good")
         username = request.session.get('username')
         food_ = food.objects.filter(name = request.GET.get('foodname'))
         a,b,c = findremmendation(food_[0])
@@ -152,8 +153,6 @@ def update(request):
     con = request.GET.get('country')
     cate = request.GET.get('category')
     ingr = request.GET.get('ingredients')
-    path = request.GET.get('picturePath')
-    num_like = 0;
     food_list = food.objects.filter(name = select)
 
     if(item == ""):
@@ -164,9 +163,8 @@ def update(request):
         cate = food_list[0].category
     if(ingr ==""):
         ingr = food_list[0].ingredient
-    if(path ==""):
-        path = food_list[0].pic_path
-    food_list.update(name = item, country = con, category =cate, ingredient=ingr, pic_path = path)
+
+    food_list.update(name = item, country = con, category =cate, ingredient=ingr)
     return render_to_response('update2.html',{'foods':food.objects.filter(name =item)})
 
 
@@ -212,7 +210,7 @@ def picture_add(request):
             food_.headImg = headImg
             food_.num_like = 0
             food_.save()
-
+            print("sdfds")
             return _ini_(request)
     else:
         food_form = Foodform()
@@ -277,7 +275,7 @@ def dislike(request):
         spicy = (stu_.spicy*10/9 - sp * 1)/10 * 10
         salty = (stu_.salty*10/9 - sa * 1)/10 * 10
         sweet = (stu_.sweet*10/9 - sw * 1)/10 * 10
-        num_likeu = stu.num_like-1
+        num_likeu = stu_.num_like-1
         num_likef = food__.num_like-1
         user_.update(salty = salty
         ,sweet = sweet
