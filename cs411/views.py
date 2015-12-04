@@ -111,7 +111,7 @@ def _ini_(request):
 
 def searchresult_name(request):
     food_name = request.GET.get('food_name')
-    food_ = food.objects.filter(name__contains = food_name)
+    food_ = food.objects.filter(name__icontains = food_name)
     username = request.session.get('username')
     page_size = 5
     paginator = Paginator(food_, page_size)
