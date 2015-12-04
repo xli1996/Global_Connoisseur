@@ -43,7 +43,11 @@
             border-radius: 12px;
             border: 1px solid #808080;
         }
+
+
+
     </style>
+
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -59,15 +63,13 @@
 
     <div class="brand">Global Connoisseur</div>
     {% if username != None %}
-    <input type="button" class="btn btn-default btn-lg" style="position:absolute;left: 80%;top: 10px;" value = {{ username}}>login</a>
-    <a href="signup" class="btn btn-default btn-lg" style="position:absolute;left: 88%;top: 10px;">SignUp</a>
+    <a href="profile"><input type="button" class="btn btn-default btn-lg" style="position:absolute;left: 80%;top: 10px;" value = {{ username}}>login</a>
+        <a href="logout" class="btn btn-default btn-lg" style="position:absolute;left: 88%;top: 10px;">Logout</a>
     {% else %}
     <a href="login" class="btn btn-default btn-lg" style="position:absolute;left: 80%;top: 10px;">login</a>
 
     <a href="signup" class="btn btn-default btn-lg" style="position:absolute;left: 88%;top: 10px;">SignUp</a>
     {% endif %}
-    <div class="address-bar"> International | Authentic | Communicative</div>
-
     <!-- Navigation -->
     <nav class="navbar navbar-default" role="navigation">
         <div class="container">
@@ -80,7 +82,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <a class="navbar-brand" href="index.html">Business Casual</a>
+                <a class="navbar-brand" href="index.html">Connoisseur</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -90,27 +92,27 @@
                         <a href="index.html">Home</a>
                     </li>
                     <li>
-                        <a href="about.html">Beef</a>
+                        <a href="rankkk.html">Ranking</a>
                     </li>
                     <li>
-                        <a href="blog.html">Fish</a>
+                        <a href="pictureadd">Add new</a>
                     </li>
                     <li>
-                        <a href="contact.html">Pork</a>
+                        <a href="addnew.html">Contact</a>
                     </li>
-                     <li>
-                        <a href="blog.html">Noodles</a>
-                    </li>
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
+    <form action="test" method="get" >
+        <input type="submit" class="btn btn-default btn-lg" style="padding-top: 5px; padding-left: 0px;font:15px; position:absolute;left: 90%;top: 160px; width:80px; height:40px;" value="Search" /> <!-- search bar -->
 
-     <form action="test" method="get" >
-    <input type="submit" class="searchButton"  value ="search" />
-    <input class="search" type="text"name="food_name"  />
+    <input class="search" type="text" style="position:absolute;left: 77%;top: 160px;" name="food_name" />
+
+
 
 
 
@@ -170,7 +172,7 @@
                         <strong>worth visiting</strong>
                     </h2>
                     <hr>
-                    <img class="img-responsive img-border img-left" src="static/img/intro-pic.jpg" alt="">
+{#                    <img class="img-responsive img-border img-left" src="scc/img/intro-pic.jpg" alt="">#}
                     <hr class="visible-xs">
                     <p>Global Connoisseur is a cuisine website which not only introduces and presents various gourmet from different countries all over the world, but also offers detailed ingredients and recipes for food lovers!  In addition, our website will support convenient, interesting user functionality such as “like” particular cuisines, favorite food collection, upload homemade cuisines / recipes and comment on other users’ posts.
                     Our team has done some research on several popular, well-known food websites like “yelp”, “wheretoeat" previously and has found that the UI design of such websites is not attractive and concise enough. Therefore, our team will optimize to embellish our website design by making it well organized and concise. In addition, we have found that food websites such as “wheretoeat.ie” does not have very accurate, straightforward searching functionality. The searching result they display when we try to find a particular food is not very satisfactory.</p>

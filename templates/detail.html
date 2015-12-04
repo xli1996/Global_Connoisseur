@@ -1,245 +1,279 @@
 <!DOCTYPE html>
-<html>
-<style>
-    myTitle {
-        position: absolute;
-        width: 100%;
-        font-family: "Helvetica";
-        Font-size: 30px;
-        top: 20px;
-        left: 14%;
-        color: #d1d1d1;
-    }
+<html lang="en">
 
-    .loginarea{
-            position: absolute;
-            left: 65%;
-            top: 10px;
-    }
-    .table {
-        height:50%;
-        width:100%;
-        padding-left:10px;
-        font-family: "Helvetica";
-        Font-size: 25px;
-        font-weight: 100;
-        column-gap: 0px;
-        color:#808080;
-    }
-    .login {
-        width: 65px;
-        height: 40px;
-        border-radius: 20px;
-        color: #ffffff;
-        background-color: #FF4C65;
-        border: 0px solid #ffffff;
-        font-weight: bold;
-    }
+<head>
 
-    .searchButton {
-        top: 20px;
-        position: absolute;
-        left: 52%;
-        width: 7%;
-        height: 40px;
-        border-radius: 20px;
-        color: #ffffff;
-        background-color: #FF4C65;
-        border: 0px solid #ffffff;
-        font-weight: bold;
-    }
 
-    .search {
-        top: 20px;
-        left: 30%;
-        position: absolute;
-        width: 20%;
-        height: 40px;
-        border-radius: 20px;
-        border: 1px solid #808080;
-    }
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-    #basic_info{
-        position:relative;
-        top:630px;
-        left: 15%;
-        width:700px;
-        height: 100px;
-        border: 2px solid #808080;
-        border-radius: 20px;
-        box-sizing: border-box;
-    }
-    #pic{
-        position:absolute;
-        left:15%;
-        background: url(Homepage.jpg) no-repeat;
-        background-position: center center;
-        height:500px;
-        width:700px;
-        border-radius: 20px;
-    }
-    #steps{
-        font-size:25px;
-        color:#000000;
-        margin-top:10px;
-        margin-left:10px;
-        margin-bottom:-10px;
-    }
-    #steps_detail{
-        font-size:25px;
-        color:#808080;
-        margin-top:10px;
-        margin-left:10px;
-        margin-right:10px;
-        overflow-wrap:break-word;
-    }
+    <title>Search Results</title>
 
-    #recommendation{
-        position:absolute;
-        top:150px;
-        left:15%;
-        margin-left:800px;
-        height:700px;
-    }
-    .pic_rec{ 
-        height:150px;
-        border-radius:20px;
-    }
-    .table_rec{
-    }
-</style>
-<body style="font-family: 'Helvetica';">
-    <mytitle>
-        Global Connoisseur
-    </mytitle>
-    <br /><br /><br /><br />
-    <hr />
+    <!-- Bootstrap Core CSS -->
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
 
-    <div class="loginarea">
-        {% if username != None %}
-        <input type="button" class="login" value="{{ username}}"/>
-        <a href="logout"><input type="button" class="login" value="Logout" /></a >
-        {% else %}
-        <a href="login"><input type="button" class="login" value="Login" /></a >
-        <a href="signup"><input type="button" style="width:85px;" class="login" value="Sign Up" /></a >
-        {% endif %}
-    </div>
+    <!-- Custom CSS -->
+    <link href="static/css/business-casual.css" rel="stylesheet">
 
-    <div>
-        {% for food in foods%}
-        <div id="pic">
-        <img src = "{{ food.headImg }}" style="width:704px;height:528px;">
-        </div>
-        <div id="basic_info">
-            <table class="table">
-                <tr>
-                    <td>
-                        Title: {{food.name  }}
-                    </td>
-                </tr>
-            </table>
-                        <table class="table">
-                <tr>
-                    <td>
-                        <a href="like?foodname={{ food.name }}" style="text-decoration:none;" >
-                            <input type="button"  class="login" value="Like" />
-                        </a >
-                        <a href="dislike?foodname={{ food.name }}" style="text-decoration:none;">
-                            <input type="button"  class="login" value="Dislike" />
-                        </a >
-                    </td>
-                </tr>
-            </table>
-            <table class="table">
-                <tr>
-                    <td>
-                        Category: {{ food.category }}
-                    </td>
-                    <td>
-                        Country: {{ food.country }}
-                    </td>
-                </tr>
-            </table>
-        </div>
-        <div id="basic_info" style="top:750px; height:200px; ">
-            <p id="steps">Ingredients:</p >
-            <table class="table" style="height:90%">
-                <tr>
-                    <td>
-                        {{ food.ingredient }}:
-                    </td>
-                </tr>
-            </table>
-            {%endfor%}
-        </div>
-        {% if cs != None %}
-            {% for c in cs %}
-        <div id="basic_info" style="top:750px; height:200px; ">
-            <p id="steps">user: {{ c.user }}</p>
-            <p id="steps_detail">
-            <textarea rows="10" cols="50" readonly="readonly">{{ c.context }}
-            </textarea>
-            </p>
-            {% endfor %}
+    <!-- Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
 
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div class="brand">Global Connoisseur</div>
+    <div class="address-bar"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
+                <a class="navbar-brand" href="index.html">Business Casual</a>
             </div>
-            {% endif %}
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+                    <li>
+                        <a href="blog.html">Blog</a>
+                    </li>
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-        <div id="basic_info" style="top:970px; height:500px;">
-            <p id="steps">Comment:</p >
-            <p id="steps_detail">
-                <form  method="post" enctype="multipart/form-data">
-            {{ comment.comment }}
-            <input type="submit"  class="login" value="submit" />
-</form>
-            </p >
+    <form action="test" method="get" >
+    <input type="submit" class="btn btn-default btn-lg" style="padding-top: 5px; padding-left: 0px;font:15px; position:absolute;left: 90%;top: 180px; width:80px; height:40px;" value="Search" /> <!-- search bar -->
+    <input class="form-control" type="text" style="width:10%; position:absolute;left: 78%;top: 183px;" value="" name="food_name"/>
 
+    <!--login-->
+    {% if username != None %}
+    <a href = "profile" class="btn btn-default btn-lg" style="position:absolute;left: 80%;top: 10px;">{{username}}</a>
+    <a href="logout" class="btn btn-default btn-lg" style="position:absolute;left: 88%;top: 10px;">Logout</a>
+    {% else %}
+    <a href="login.html" class="btn btn-default btn-lg" style="position:absolute;left: 80%;top: 10px;">login</a>
+    <a href="signup.html" class="btn btn-default btn-lg" style="position:absolute;left: 88%;top: 10px;">SignUp</a>
+    {% endif %}
+
+
+
+
+    <div class="container">
+
+
+        {% for food in foods%}
+        <div class="row">
+            <div class="box">
+                <div class="col-lg-12">
+
+                        <div class="row">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img src="{{ food.headImg }}" style="width:500px;height:500px;">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <h2>
+                                            <strong>{{food.name}}</strong>
+                                        </h2>
+                                    </td>
+                                    <td style="position:absolute; left:400px;">
+                                        <a href="like?foodname={{ food.name }}" style="text-decoration:none;">
+                                            <input type="button" class="btn btn-default btn-lg" value="Like" />
+                                    </td>
+                                    <td style="position:absolute; left:470px;">
+                                        <a href="dislike?foodname={{ food.name }}" style="text-decoration:none;">
+                                            <input type="button" class="btn btn-default btn-lg" style="padding-left:12px;width:80px" value="Dislike" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <hr style="position:absolute;left:0px;width:80%;margin-top:-5px;" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <table width="520" style="font-size:20px;">
+                                            <tr>
+                                                <td>
+                                                    Category: {{ food.category }}
+                                                </td>
+                                                <td>
+                                                    Country: {{ food.country }}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="font-size:20px;">
+                                        Ingredients: {{ food.ingredient }}:
+                                    </td>
+                                </tr>
+                            </table>
+                            {%endfor%}
+                            {% if cs != None %}
+                            {% for c in cs %}
+                            <table style="font-size:20px;">
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size:25px;">
+                                        Comments
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        user: {{ c.user }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <textarea rows="5" cols="45" readonly="readonly">{{ c.context }}
+                                        </textarea>
+                                    </td>
+                                    {% endfor %}
+                                </tr>
+                                {% endif %}
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <form method="post" enctype="multipart/form-data">
+                                            {{ comment.comment }}
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="submit" class="btn btn-default btn-lg" value="submit" />
+                                    </td>
+                                </tr>
+                            </form>
+                            </table>
+
+                            <table style="position:absolute; top:0px; left:600px">
+                                <tr>
+                                    <td style="font-size:30px">
+                                        You might also like
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size:25px">
+                                        {{ one.name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="detail?foodname={{ one.name }}"><img src={{  one.headImg }} style="width:200px;height:200px;"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size:25px">
+                                        {{ two.name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="detail?foodname={{ two.name }}"><img src={{  two.headImg }} style="width:200px;height:200px;"></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        &nbsp;
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="font-size:25px">
+                                        {{ three.name }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="detail?foodname={{ three.name }}"><img src={{  three.headImg }} style="width:200px;height:200px;"></a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+
+                </div>
+            </div>
         </div>
 
     </div>
-    <div id="recommendation">
-        <table id="table_rec">
-            <tr>
-                <tb>
-                    <p id="steps" style="margin-bottom:10px;">You might also like</p >
-                </tb>
-            </tr>
-            <tr>
-                <tb>
-                    <a href="detail?foodname={{ one.name }}"><img src="{{ one.headImg }}" class="pic_rec"/></a>
-                </tb>
-            </tr>
-            <tr>
-                <tb></tb>
-                <tb>
-                    <p>{{ one.name }}</p >
-                </tb>
-            </tr>
-            <tr>
-                <tb>
-                    <a href="detail?foodname={{ two.name }}"><img src="{{ two.headImg }}" class="pic_rec" /></a>
-                </tb>
-            </tr>
-            <tr>
-                <tb></tb>
-                <tb>
-                    <p>{{ two.name }}</p >
-                </tb>
-            </tr>
-            <tr>
-                <tb>
-                    <a href="detail?foodname={{ three.name }}"><img src="{{ three.headImg }}" class="pic_rec" /></a>
-                </tb>
-            </tr>
-            <tr>
-                <tb></tb>
-                <tb>
-                    <p>{{ three.name }}</p >
-                </tb>
-            </tr>
+    <!-- /.container -->
 
-        </table>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p>Copyright &copy; Global Connoisseur 2015</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-    </div>
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
 </body>
+
 </html>

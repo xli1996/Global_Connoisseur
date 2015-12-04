@@ -20,6 +20,7 @@ class food(models.Model):
     spicy = models.IntegerField()
     sweet = models.IntegerField()
     salty = models.IntegerField()
+    num_like = models.IntegerField(default=0)
     def __str__(self):
         return self.name
 
@@ -31,10 +32,10 @@ class comment(models.Model):
         unique_together =('user','name')
 
 class likelist(models.Model):
-    user = models.CharField(max_length=20,primary_key=True)
+    user = models.CharField(max_length=20)
     name = models.CharField(max_length=40)
-
-
+    class Meta:
+        unique_together =('user','name')
 
 
 

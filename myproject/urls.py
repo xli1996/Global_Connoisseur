@@ -33,7 +33,9 @@ urlpatterns = [
     url(r'^pictureadd','cs411.views.picture_add'),
     url(r'^detail','cs411.views.detail'),
     url(r'^like','cs411.views.like'),
-    #url(r'^dislike','cs411.views.dislike'),
+    url(r'^dislike','cs411.views.dislike'),
+    url(r'^profile','cs411.views.profile'),
+    url(r'^rank','cs411.views.ranking'),
 
 
 
